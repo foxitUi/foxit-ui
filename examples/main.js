@@ -7,7 +7,7 @@ import ElementUI from 'element-ui';
 Vue.use(ElementUI);
 
 import foxitUi from '@/index'
-Vue.use(foxitUi);
+Vue.use(foxitUi,{btnType:'success'});
 
 Vue.config.productionTip = false
 new Vue({
