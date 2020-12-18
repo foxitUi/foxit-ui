@@ -1,6 +1,6 @@
 {
   "name": "foxit-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "main": "lib/index/index.js",
   "description": "基于element ui 二次封装的组件库",
@@ -22,16 +22,18 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "inspect":"vue-cli-service inspect --mode production > output.js"
+    "inspect": "vue-cli-service inspect --mode production > output.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "element-ui": "^2.14.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
+    "babel-plugin-component": "^1.1.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "vue-template-compiler": "^2.6.10"

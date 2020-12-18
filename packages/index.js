@@ -1,8 +1,6 @@
-import testA from './testA'
-import testB from './testB'
+import fwButton from './fwButton'
 export default {
   install(Vue) {
-    Vue.use(testA);
-    Vue.use(testB);
+    Vue.use(fwButton);
   },
 }
