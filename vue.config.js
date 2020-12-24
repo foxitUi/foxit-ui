@@ -10,7 +10,9 @@ function getEntries(path) {
     const itemPath = join(path, item);
     const isDir = fs.statSync(itemPath).isDirectory();
     if (isDir) {
-      ret[item] = resolve(join(itemPath, 'index.js'));
+      if (item !== 'style') {
+        ret[item] = resolve(join(itemPath, 'index.js'));
+      }
     } else {
       const [name] = item.split('.');
       ret[name] = resolve(itemPath);
@@ -31,6 +33,7 @@ const DEV_CONFIG = {
       extensions: ['.js', '.vue', '.json'],
       alias: {
         '@': resolve('packages'),
+        'assets': resolve('examples/assets'),
       }
     }
   },
@@ -66,6 +69,12 @@ const BUILD_CONFIG = {
     output: {
       filename: '[name]/index.js',
       libraryTarget: 'commonjs2',
+    },
+    resolve: {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        '@': resolve('packages'),
+      }
     }
   },
   chainWebpack: config => {

@@ -1,8 +1,8 @@
 <template>
   <div style="text-align: center">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <fw-button>默认按钮</fw-button>
-    <fw-button>主要按钮</fw-button>
+    <fw-button type="danger">默认按钮</fw-button>
+    <el-button icon="fw-icon-AlRenewaRate2">主要按钮</el-button>
+    <i class="icon ali-iconfont van-icon-AlRetract"></i>
   </div>
 </template>
 
