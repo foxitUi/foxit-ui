@@ -20,13 +20,16 @@
   },
   "homepage": "https://github.com/foxitUi/foxit-ui#readme",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "inspect": "vue-cli-service inspect --mode production > output.js"
+    "doc": "cross-env NODE_ENV=doc vue-cli-service serve",
+    "inspect:dev": "vue-cli-service inspect --mode development > output.js",
+    "inspect:pro": "vue-cli-service inspect --mode production > output.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
     "element-ui": "^2.14.1",
+    "highlight.js": "^9.3.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
@@ -34,10 +37,16 @@
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
     "babel-plugin-component": "^1.1.1",
+    "cross-env": "^7.0.3",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "markdown-it": "^12.0.4",
+    "markdown-it-anchor": "^6.0.1",
+    "markdown-it-chain": "^1.3.0",
+    "markdown-it-container": "^3.0.0",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.0",
+    "transliteration": "^2.2.0",
     "vue-template-compiler": "^2.6.10"
   }
 }

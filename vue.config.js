@@ -21,40 +21,6 @@ function getEntries(path) {
   }, {})
   return entries;
 }
-//开发环境配置
-const DEV_CONFIG = {
-  pages: {
-    index: {
-      entry: 'examples/main.js',
-    },
-  },
-  configureWebpack: {
-    resolve: {
-      extensions: ['.js', '.vue', '.json'],
-      alias: {
-        '@': resolve('packages'),
-        'assets': resolve('examples/assets'),
-      }
-    }
-  },
-  chainWebpack: config => {
-    config.module
-      .rule('js')
-      .include
-      .add('/packages')
-      .end()
-      .use('babel')
-      .loader('babel-loader')
-      .tap(options => {
-        return options
-      });
-  },
-  devServer: {
-    port: 8080,
-    hot: true,
-    open: 'Google Chrome'
-  }
-}
 //生成环境配置
 const BUILD_CONFIG = {
   css: {
@@ -101,5 +67,96 @@ const BUILD_CONFIG = {
   outputDir: 'lib',
   productionSourceMap: false,
 };
-
-module.exports = process.env.NODE_ENV === 'development' ? DEV_CONFIG : BUILD_CONFIG;
+//开发环境配置
+const DEV_CONFIG = {
+  pages: {
+    index: {
+      entry: 'examples/main.js',
+    },
+  },
+  configureWebpack: {
+    resolve: {
+      extensions: ['.js', '.vue', '.json'],
+      alias: {
+        '@': resolve('packages'),
+        'assets': resolve('examples/assets'),
+      }
+    }
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('js')
+      .include
+      .add('/packages')
+      .end()
+      .use('babel')
+      .loader('babel-loader')
+      .tap(options => {
+        return options
+      });
+  },
+  devServer: {
+    port: 8080,
+    hot: true,
+    open: 'Google Chrome'
+  }
+}
+//UI文档开发环境配置
+const DOC_DEV_CONFIG = {
+  pages: {
+    index: {
+      entry: 'doc/main.js',
+    },
+  },
+  configureWebpack: {
+    resolve: {
+      extensions: ['.js', '.vue', '.md', '.json'],
+      alias: {
+        '@': resolve('packages'),
+        'assets': resolve('doc/assets'),
+        'views': resolve('doc/views'),
+        'docs': resolve('doc/docs')
+      }
+    }
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('js')
+      .include
+      .add('/packages')
+      .end()
+      .use('babel')
+      .loader('babel-loader')
+      .tap(options => {
+        return options
+      });
+    config.module
+      .rule('md')
+      .test(/\.md$/)
+      .use('vueLoader')
+      .loader('vue-loader')
+      .options({
+        compilerOptions: {
+          preserveWhitespace: false
+        }
+      })
+      .end()
+      .use('mdLoader')
+      .loader(path.resolve(__dirname, './doc/md-loader/index.js'))
+  },
+  devServer: {
+    port: 8080,
+    hot: true,
+    open: 'Google Chrome'
+  }
+}
+switch (process.env.NODE_ENV) {
+  case 'production':
+    module.exports = BUILD_CONFIG;
+    break;
+  case 'doc':
+    module.exports = DOC_DEV_CONFIG;
+    break;
+  default:
+    module.exports = DEV_CONFIG;
+} 
