@@ -1,0 +1,42 @@
+{
+  "zh-CN": [
+    {
+      "name": "开发指南",
+      "children": []
+    },
+    {
+      "name": "组件",
+      "groups": [
+        {
+          "groupName": "Basic",
+          "list": []
+        },
+        {
+          "groupName": "Form",
+          "list": []
+        },
+        {
+          "groupName": "Data",
+          "list": []
+        },
+        {
+          "groupName": "Notice",
+          "list": [
+            {
+              "path": "/alert",
+              "title": "Alert 警告"
+            }
+          ]
+        },
+        {
+          "groupName": "Navigation",
+          "list": []
+        },
+        {
+          "groupName": "Others",
+          "list": []
+        }
+      ]
+    }
+  ]
+}

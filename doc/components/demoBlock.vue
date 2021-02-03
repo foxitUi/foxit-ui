@@ -34,7 +34,7 @@
 </style>
 
 <script type="text/babel">
-import { stripScript, stripStyle, stripTemplate } from '../util';
+import { stripScript, stripStyle, stripTemplate } from 'service/util';
 const version = '2.6.2';
 
 export default {

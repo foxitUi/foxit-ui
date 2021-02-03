@@ -115,7 +115,10 @@ const DOC_DEV_CONFIG = {
         '@': resolve('packages'),
         'assets': resolve('doc/assets'),
         'views': resolve('doc/views'),
-        'docs': resolve('doc/docs')
+        'components': resolve('doc/components'),
+        'docs': resolve('doc/docs'),
+        'config': resolve('doc/config'),
+        'service': resolve('doc/service')
       }
     }
   },

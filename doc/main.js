@@ -4,7 +4,6 @@ import router from './router';
 import 'assets/base.scss';
 import 'assets/docs/index.scss';
 
-
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
@@ -12,12 +11,8 @@ Vue.use(ElementUI);
 import foxitUi from '@/fwButton/index'
 Vue.use(foxitUi,{btnType:'success'});
 
-import demoBlock from 'views/demoBlock';
-import footerNav from 'views/footerNav';
-import sideNav from 'views/sideNav';
+import demoBlock from 'components/demoBlock';
 Vue.component('demo-block', demoBlock);
-Vue.component('footer-nav', footerNav);
-Vue.component('side-nav', sideNav);
 
 Vue.config.productionTip = false
 
@@ -29,7 +24,6 @@ router.afterEach(route => {
     Array.prototype.forEach.call(blocks, hljs.highlightBlock);
   });
 });
-
 
 new Vue({
   router,
