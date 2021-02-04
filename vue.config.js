@@ -91,6 +91,7 @@ const DOC_DEV_CONFIG = {
       alias: {
         '@': resolve('packages'),
         'assets': resolve('doc/assets'),
+        'images': resolve('doc/assets/images'),
         'views': resolve('doc/views'),
         'components': resolve('doc/components'),
         'docs': resolve('doc/docs'),

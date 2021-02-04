@@ -53,7 +53,7 @@ routes = routes.concat(
   [
     {
       path: '/',
-      redirect: '/home',
+      component: load('index')
     },
     {
       path: '*',
