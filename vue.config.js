@@ -44,17 +44,6 @@ const BUILD_CONFIG = {
     }
   },
   chainWebpack: config => {
-    config.module
-      .rule('js')
-      .include
-      .add('/packages')
-      .end()
-      .use('babel')
-      .loader('babel-loader')
-      .tap(options => {
-        return options
-      });
-
     config.entryPoints.delete('app');//清除原先入口文件配置中的app项
 
     config.optimization.delete('splitChunks');
@@ -79,24 +68,12 @@ const DEV_CONFIG = {
       extensions: ['.js', '.vue', '.json'],
       alias: {
         '@': resolve('packages'),
-        'assets': resolve('examples/assets'),
+        'assets': resolve('src/assets'),
       }
     }
   },
-  chainWebpack: config => {
-    config.module
-      .rule('js')
-      .include
-      .add('/packages')
-      .end()
-      .use('babel')
-      .loader('babel-loader')
-      .tap(options => {
-        return options
-      });
-  },
   devServer: {
-    port: 8080,
+    port: 8081,
     hot: true,
     open: 'Google Chrome'
   }
@@ -124,16 +101,6 @@ const DOC_DEV_CONFIG = {
   },
   chainWebpack: config => {
     config.module
-      .rule('js')
-      .include
-      .add('/packages')
-      .end()
-      .use('babel')
-      .loader('babel-loader')
-      .tap(options => {
-        return options
-      });
-    config.module
       .rule('md')
       .test(/\.md$/)
       .use('vueLoader')
@@ -153,12 +120,54 @@ const DOC_DEV_CONFIG = {
     open: 'Google Chrome'
   }
 }
+//UI文档开发环境配置
+const DOC_BUILD_CONFIG = {
+  pages: {
+    index: {
+      entry: 'doc/main.js',
+    },
+  },
+  configureWebpack: {
+    resolve: {
+      extensions: ['.js', '.vue', '.md', '.json'],
+      alias: {
+        '@': resolve('packages'),
+        'assets': resolve('doc/assets'),
+        'views': resolve('doc/views'),
+        'components': resolve('doc/components'),
+        'docs': resolve('doc/docs'),
+        'config': resolve('doc/config'),
+        'service': resolve('doc/service')
+      }
+    }
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('md')
+      .test(/\.md$/)
+      .use('vueLoader')
+      .loader('vue-loader')
+      .options({
+        compilerOptions: {
+          preserveWhitespace: false
+        }
+      })
+      .end()
+      .use('mdLoader')
+      .loader(path.resolve(__dirname, './doc/md-loader/index.js'))
+  },
+  outputDir: 'dist',
+  productionSourceMap: false,
+}
 switch (process.env.NODE_ENV) {
   case 'production':
     module.exports = BUILD_CONFIG;
     break;
   case 'doc':
     module.exports = DOC_DEV_CONFIG;
+    break;
+  case 'docbuild':
+    module.exports = DOC_BUILD_CONFIG;
     break;
   default:
     module.exports = DEV_CONFIG;
